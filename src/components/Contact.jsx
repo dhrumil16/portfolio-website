@@ -16,7 +16,7 @@ const Contact = () => {
                             <a href="https://github.com/dhrumil16" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-primary hover:text-white transition-all">
                                 <Github size={20} />
                             </a>
-                            <a href="https://linkedin.com/in/dhrumil-patel" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/5 rounded-full hover:bg-secondary hover:text-white transition-all">
+                            <a href="https://www.linkedin.com/in/dhrumil-patel-627178268" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/5 hover:bg-primary/20 text-gray-400 hover:text-primary rounded-full flex items-center justify-center transition-all">
                                 <Linkedin size={20} />
                             </a>
                             <a href="mailto:dhrumildk16127@gmail.com" className="p-3 bg-white/5 rounded-full hover:bg-accent hover:text-white transition-all">
