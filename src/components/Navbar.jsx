@@ -83,7 +83,7 @@ const Navbar = () => {
                             <a href="https://github.com/dhrumil16" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                                 <Github size={20} />
                             </a>
-                            <a href="https://linkedin.com/in/dhrumil-patel" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
+                            <a href="https://www.linkedin.com/in/dhrumil-patel-627178268" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white">
                                 <Linkedin size={20} />
                             </a>
                             <a href="mailto:dhrumildk16127@gmail.com" className="text-gray-400 hover:text-white">
