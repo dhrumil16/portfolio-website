@@ -1,100 +1,160 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ArrowRight, Download } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Download, Sparkles, MapPin, Phone } from 'lucide-react';
 import profileImage from '../assets/profile.png';
 import resume from '../assets/Dhrumil_Patel_Resume.pdf';
 
 const Hero = () => {
-    const heroRef = useRef(null);
-    const textRef = useRef(null);
-    const imageRef = useRef(null);
-
-    useEffect(() => {
-        const tl = gsap.timeline();
-
-        tl.fromTo(
-            textRef.current.children,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power3.out" }
-        )
-            .fromTo(
-                imageRef.current,
-                { x: 50, opacity: 0 },
-                { x: 0, opacity: 1, duration: 1, ease: "power3.out" },
-                "-=0.8"
-            );
-    }, []);
+    // Floating animation variants for badges
+    const floatingVariant = (delay) => ({
+        animate: {
+            y: [0, -15, 0],
+            transition: {
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: delay
+            }
+        }
+    });
 
     return (
-        <section ref={heroRef} className="min-h-screen flex items-center justify-center pt-24 pb-12 px-6 relative overflow-hidden">
-            {/* Background Gradients */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl -z-10 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <section id="home" className="min-h-screen flex items-center justify-center pt-32 pb-20 px-6 relative overflow-hidden z-10">
+            {/* Massive Background Glow */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none -z-10">
+                <div className="absolute top-[10%] -left-[10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[150px] mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }}></div>
+                <div className="absolute bottom-[10%] -right-[10%] w-[600px] h-[600px] bg-secondary/20 rounded-full blur-[150px] mix-blend-screen animate-pulse" style={{ animationDuration: '10s', animationDelay: '2s' }}></div>
+                {/* Subtle Grid Overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div>
+            </div>
 
-            <div className="container mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="container mx-auto max-w-7xl">
+                <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
+                    
+                    {/* Left Side: Text Content */}
+                    <div className="flex flex-col items-center lg:items-start text-center lg:text-left order-2 lg:order-1 relative z-10">
+                        
+                        <motion.div 
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="inline-flex items-center gap-2 px-5 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md shadow-lg mb-8 group hover:border-primary/50 transition-colors"
+                        >
+                            <Sparkles size={16} className="text-primary group-hover:scale-110 transition-transform"/>
+                            <span className="text-sm font-medium text-gray-300 tracking-wide">Fintech Graduate & Freelance Developer</span>
+                        </motion.div>
 
-                {/* Text Content - Image is Order 1 on Mobile, Text Order 2 */}
-                <div ref={textRef} className="space-y-4 text-center md:text-left order-2 md:order-1 flex flex-col items-center md:items-start">
-                    <div className="inline-block px-4 py-1.5 bg-white/5 border border-white/10 rounded-full">
-                        <span className="text-primary font-medium tracking-wide text-xs md:text-sm">Fintech Student & Developer</span>
+                        <motion.h1 
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+                            className="text-5xl md:text-7xl lg:text-[5.5rem] font-black leading-[1.1] tracking-tighter mb-6 text-white"
+                        >
+                            Hi, I'm <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-purple-400">Dhrumil Patel.</span>
+                        </motion.h1>
+
+                        <motion.p 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.4 }}
+                            className="text-lg md:text-xl text-gray-400 max-w-xl leading-relaxed font-light mb-10"
+                        >
+                            I specialize in bridging the gap between complex financial systems and highly intuitive user experiences, engineering robust full-stack applications in the Fintech space.
+                        </motion.p>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, delay: 0.6 }}
+                            className="flex flex-col sm:flex-row gap-4 sm:gap-6 w-full sm:w-auto"
+                        >
+                            <a href="#projects" className="group relative px-8 py-4 bg-white text-dark rounded-2xl font-bold transition-transform hover:scale-105 flex items-center justify-center gap-3 overflow-hidden shadow-[0_0_40px_rgba(255,255,255,0.1)] hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] w-full sm:w-auto text-lg">
+                                <span className="relative z-10 group-hover:text-white transition-colors duration-300">View Projects</span>
+                                <ArrowRight size={20} className="relative z-10 group-hover:translate-x-1 transition-transform group-hover:text-white duration-300" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-opacity z-0 duration-300"></div>
+                            </a>
+                            <a href={resume} download="Dhrumil_Patel_Resume.pdf" className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-bold transition-all flex items-center justify-center gap-3 backdrop-blur-md hover:border-white/30 w-full sm:w-auto text-lg group">
+                                Download CV
+                                <Download size={20} className="group-hover:-translate-y-1 transition-transform"/>
+                            </a>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                            className="mt-12 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-sm text-gray-500 font-medium"
+                        >
+                            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-xl border border-white/5">
+                                <MapPin size={16} className="text-secondary"/> Ahmedabad, Gujarat
+                            </div>
+                            <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-xl border border-white/5">
+                                <Phone size={16} className="text-secondary"/> +91-9173091944
+                            </div>
+                        </motion.div>
                     </div>
-                    <h1 className="text-4xl md:text-7xl font-bold leading-tight">
-                        Hi, I'm <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Dhrumil Patel</span>
-                    </h1>
-                    <p className="text-base md:text-xl text-gray-400 max-w-lg mx-auto md:mx-0 leading-relaxed">
-                        Experienced Web and Python Developer specializing in building responsive web applications and scalable backend solutions in the Fintech space.
-                    </p>
 
-                    <div className="flex flex-wrap gap-3 pt-2 justify-center md:justify-start w-full">
-                        <a href="#projects" className="px-6 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-full font-medium transition-all flex items-center gap-2 group text-sm md:text-base">
-                            View Projects
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                        </a>
-                        <a href={resume} download="Dhrumil_Patel_Resume.pdf" className="px-6 py-2.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-full font-medium transition-all flex items-center gap-2 text-sm md:text-base">
-                            Download CV
-                            <Download size={16} />
-                        </a>
-                    </div>
+                    {/* Right Side: Visual Content */}
+                    <div className="relative flex justify-center lg:justify-end order-1 lg:order-2 mt-12 lg:mt-0">
+                        
+                        {/* Wrapper for Image and Badges to ensure absolute positioning is relative to the circle */}
+                        <div className="relative w-72 h-72 md:w-96 md:h-96">
+                            
+                            {/* Premium Frosted Glass Image Circle */}
+                            <motion.div 
+                                initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+                                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                                transition={{ duration: 1, type: "spring", stiffness: 50 }}
+                                className="absolute inset-0 rounded-full overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group z-10 flex items-center justify-center bg-dark/50 backdrop-blur-sm"
+                            >
+                                <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
+                                <img
+                                    src={profileImage}
+                                    alt="Dhrumil Patel"
+                                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-1000 ease-out"
+                                />
+                                {/* Inner shadow to blend image with card */}
+                                <div className="absolute inset-0 shadow-[inset_0_-30px_60px_rgba(0,0,0,0.8)] z-20 rounded-full"></div>
+                            </motion.div>
 
-                    <div className="pt-6 flex flex-col md:flex-row items-center gap-3 text-sm text-gray-500 justify-center md:justify-start">
-                        <span>📍 Ahmedabad, Gujarat</span>
-                        <span className="hidden md:block w-1 h-1 bg-gray-500 rounded-full"></span>
-                        <span>📱 +91-9173091944</span>
-                    </div>
-                </div>
+                            {/* Floating Tech Badges with Zero-Gravity Framer Motion Animation */}
+                            
+                            {/* Top Right: React */}
+                            <motion.div 
+                                variants={floatingVariant(0)}
+                                animate="animate"
+                                className="absolute top-4 -right-4 md:-right-8 px-5 py-3 bg-dark/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-30"
+                            >
+                                <span className="text-primary font-black tracking-wide">React.js</span>
+                            </motion.div>
 
-                {/* Image/Visual Content */}
-                <div ref={imageRef} className="relative flex justify-center order-1 md:order-2 mt-8 md:mt-0">
-                    <div className="relative w-64 h-64 md:w-96 md:h-96">
-                        <div className="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-full opacity-20 blur-2xl"></div>
-                        <div className="relative w-full h-full rounded-full border-2 border-white/10 bg-dark/50 backdrop-blur-sm overflow-hidden flex items-center justify-center">
-                            <img
-                                src={profileImage}
-                                alt="Dhrumil Patel"
-                                className="w-full h-full object-cover object-center"
-                            />
-                        </div>
+                            {/* Bottom Left: Python */}
+                            <motion.div 
+                                variants={floatingVariant(1)}
+                                animate="animate"
+                                className="absolute bottom-10 -left-4 md:-left-8 px-5 py-3 bg-dark/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-30"
+                            >
+                                <span className="text-secondary font-black tracking-wide">Python</span>
+                            </motion.div>
 
-                        {/* Floating Badges */}
-                        {/* Top Right: React */}
-                        <div className="absolute top-0 -right-4 md:-right-8 px-3 py-1.5 md:px-4 md:py-2 bg-dark/80 backdrop-blur border border-white/10 rounded-lg shadow-xl animate-bounce leading-none" style={{ animationDuration: '3s' }}>
-                            <span className="text-primary font-bold text-xs md:text-sm">React.js</span>
-                        </div>
+                            {/* Bottom Right: MySQL */}
+                            <motion.div 
+                                variants={floatingVariant(2.5)}
+                                animate="animate"
+                                className="absolute bottom-4 -right-2 md:right-0 px-5 py-3 bg-dark/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-30"
+                            >
+                                <span className="text-blue-400 font-black tracking-wide">MySQL</span>
+                            </motion.div>
 
-                        {/* Bottom Left: Python */}
-                        <div className="absolute bottom-4 -left-4 md:-left-8 px-3 py-1.5 md:px-4 md:py-2 bg-dark/80 backdrop-blur border border-white/10 rounded-lg shadow-xl animate-bounce leading-none" style={{ animationDuration: '4s', animationDelay: '1s' }}>
-                            <span className="text-secondary font-bold text-xs md:text-sm">Python</span>
-                        </div>
-
-                        {/* Bottom Right: MySQL */}
-                        <div className="absolute bottom-6 -right-2 md:-right-4 px-3 py-1.5 md:px-4 md:py-2 bg-dark/80 backdrop-blur border border-white/10 rounded-lg shadow-xl animate-bounce leading-none" style={{ animationDuration: '3.5s', animationDelay: '0.5s' }}>
-                            <span className="text-blue-400 font-bold text-xs md:text-sm">MySQL</span>
-                        </div>
-
-                        {/* Top Left: PowerBI */}
-                        <div className="absolute top-8 -left-2 md:-left-6 px-3 py-1.5 md:px-4 md:py-2 bg-dark/80 backdrop-blur border border-white/10 rounded-lg shadow-xl animate-bounce leading-none" style={{ animationDuration: '4.5s', animationDelay: '1.5s' }}>
-                            <span className="text-yellow-500 font-bold text-xs md:text-sm">PowerBI</span>
+                            {/* Top Left: PowerBI */}
+                            <motion.div 
+                                variants={floatingVariant(1.5)}
+                                animate="animate"
+                                className="absolute top-24 -left-4 md:-left-8 px-5 py-3 bg-dark/80 backdrop-blur-md border border-white/10 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.5)] z-30"
+                            >
+                                <span className="text-yellow-500 font-black tracking-wide">PowerBI</span>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
